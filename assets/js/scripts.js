@@ -20,7 +20,7 @@ const slides = [
             <div class="card">
                 <h2>Buenas tardes señorita <span id="nombre-dinamico"></span> 🌸</h2>
                 <p>Es un gusto tenerla aquí en este hermoso día. ¡Se ha ganado el premio mayor!</p>
-                <img src="assets/img/ramo.png" alt="Ramo" class="img-fluid my-3 ramo-animado" style="width:150px;">
+                <img src="assets/img/ramo.PNG" alt="Ramo" class="img-fluid my-3 ramo-animado" style="width:150px;">
                 <button class="btn btn-primary continuar-btn" onclick="siguienteSlide()">Continuar</button>
             </div>
         </div>`
