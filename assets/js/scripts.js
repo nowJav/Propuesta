@@ -46,7 +46,7 @@ const slides = [
             <div class="card">
                 <p>Quién diría que un jueguito nos reuniría para vivir el mejor capítulo de nuestras vidas 🎮❤️</p>
                 <p>Pronto, esta foto y muchas más serán realidad...</p>
-                <img src="assets/img/foto2.jpg" alt="Foto especial" class="img-fluid rounded my-3">
+                <img src="assets/img/juntos.PNG" alt="Foto especial" class="img-fluid rounded my-3">
                 <button class="btn btn-primary continuar-btn" onclick="siguienteSlide()">Continuar</button>
             </div>
         </div>`
