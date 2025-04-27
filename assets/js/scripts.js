@@ -7,6 +7,11 @@ let currentSlide = 0;
 // Detectar si es pantalla táctil
 const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
+// Inicializar música de fondo
+const musicaFondo = new Audio('assets/audio/banda_sonora.mp3');
+musicaFondo.loop = true; // Que suene en bucle
+musicaFondo.volume = 1; // Volumen más bajito para no ser invasivo
+
 // Configurar contenido de slides
 const slides = [
     {
@@ -15,7 +20,7 @@ const slides = [
             <div class="card">
                 <h2>Buenas tardes señorita <span id="nombre-dinamico"></span> 🌸</h2>
                 <p>Es un gusto tenerla aquí en este hermoso día. ¡Se ha ganado el premio mayor!</p>
-                <img src="assets/img/ramo.png" alt="Ramo" class="img-fluid my-3" style="width:150px;">
+                <img src="assets/img/ramo.png" alt="Ramo" class="img-fluid my-3 ramo-animado" style="width:150px;">
                 <button class="btn btn-primary continuar-btn" onclick="siguienteSlide()">Continuar</button>
             </div>
         </div>`
@@ -35,7 +40,7 @@ const slides = [
         <div class="slide" data-aos="fade-left">
             <div class="card">
                 <p>Nos separan 2,200 km desde <span id="pais-dinamico"></span> hasta mi cerrito, pero pronto serán 0 km porque estaremos juntos 🤍</p>
-                <img src="assets/img/foto1.jpg" alt="Distancia" class="img-fluid rounded my-3">
+                <img src="assets/img/distancia.PNG" alt="Distancia" class="img-fluid rounded my-3">
                 <button class="btn btn-primary continuar-btn" onclick="siguienteSlide()">Continuar</button>
             </div>
         </div>`
@@ -83,20 +88,21 @@ function mostrarFormulario() {
         <div class="card card-form text-center">
             <h2 class="mb-4">Bienvenida ✨</h2>
             <input id="inputNombre" type="text" class="form-control mb-3" placeholder="Tu nombre">
-            <input id="inputEdad" type="number" class="form-control mb-3" placeholder="Tu edad">
             <input id="inputPais" type="text" class="form-control mb-3" placeholder="Tu país">
-            <button class="btn btn-primary w-100" onclick="guardarDatos()">Comenzar</button>
+            <button class="btn btn-primary w-100 comenzar-btn" onclick="guardarDatos()">Comenzar</button>
         </div>
     </div>`;
+    musicaFondo.play().catch(e => {
+        console.log('AutoPlay bloqueado hasta interacción');
+    });
 }
 
-// Guardar datos del formulario
 function guardarDatos() {
     nombre = document.getElementById('inputNombre').value;
-    edad = document.getElementById('inputEdad').value;
     pais = document.getElementById('inputPais').value;
 
-    if(nombre && edad && pais){
+    if(nombre && pais){
+        musicaFondo.play(); // Aquí ya hay interacción real del usuario
         siguienteSlide();
     } else {
         alert('Por favor, completa todos los campos 📝');
@@ -130,6 +136,9 @@ function esquivar() {
 
 // Acción cuando aceptan
 function aceptar() {
+    musicaFondo.pause();
+    musicaFondo.currentTime = 0;
+
     document.getElementById('app').innerHTML = `
     <div class="slide d-flex flex-column justify-content-center align-items-center" data-aos="zoom-in">
         <div class="card p-3" style="background: transparent; box-shadow: none; border: none;">
@@ -145,6 +154,7 @@ function aceptar() {
     </div>`;
     AOS.init();
 }
+
 
 
 
